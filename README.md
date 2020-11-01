@@ -85,3 +85,18 @@ git push -u origin main
 git remote add origin https://github.com/VolodymyrOsinchuk/react-netlify.git
 git branch -M main
 git push -u origin main
+
+### Site Created
+
+Admin URL: https://app.netlify.com/sites/test-volodymyr
+URL:       https://test-volodymyr.netlify.app
+Site ID:   3fc1d119-9025-458d-87ab-88d26989d118
+
+
+
+Logs:              https://app.netlify.com/sites/sad-villani-7f0c74/deploys/5f9eed2d6185f12d4d79528c
+Website Draft URL: https://5f9eed2d6185f12d4d79528c--sad-villani-7f0c74.netlify.app
+
+Logs:              https://app.netlify.com/sites/sad-villani-7f0c74/deploys/5f9eed486a9468e44d43e1fe
+Unique Deploy URL: https://5f9eed486a9468e44d43e1fe--sad-villani-7f0c74.netlify.app
+Website URL:       https://sad-villani-7f0c74.netlify.app
