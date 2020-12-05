@@ -1,12 +1,12 @@
 export default {
   "data" : [
     {
-      "name": "Lesson1",
-      "url": "/lesson1"
+      "name": "Home",
+      "url": "/"
     },
     {
-      "name": "Lesson2",
-      "url": "/lesson2"
+      "name": "About",
+      "url": "/about"
     },
     {
       "name": "Lesson3",

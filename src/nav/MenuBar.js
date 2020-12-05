@@ -4,23 +4,34 @@ Button,
 Drawer,
 Collapse,
 List,
-ListItem
+ListItem,
+Container,
+CssBaseline,
 } from "@material-ui/core";
 import {
   ExpandLess,
   ExpandMore
 } from "@material-ui/icons";
-import {NavLink as RouterLink} from "react-router-dom";
+import {
+  NavLink as RouterLink,
+  Switch,
+  Route,
+  BrowserRouter as Router
+} from "react-router-dom";
 import clsx from "clsx";
 import menuItems from "./sideBarItems";
 import UseStyles from "./menuBarStyles";
+import Home from "../pages/Home";
+import About from "../pages/About";
+// import App from "../App";
 
 const MenuBar = (props) => {
-  const [menu, SetMenu] = useState({});
+  const [menu, setMenu] = useState({});
   const {className, ...rest} = props;
   const classes = UseStyles();
 
   const handleClick = (item) => {
+    // console.log('item' , item)
     let newData = {...menu, [item] : !menu[item]};
     setMenu(newData);
   }
@@ -35,23 +46,52 @@ const MenuBar = (props) => {
     return children.map(({children, name, url, links}) => {
       if (!children) {
         return (
-          <List>
-            <ListItem>
-              <Button>
-
+          <List component="div" disablePadding key={name}>
+            <ListItem
+              className={classes.item}
+              disableGutters
+              style={{padding:"0px"}}
+              key={name}
+            >
+              <Button
+                className={clsx({
+                  [classes.btnRout] : true,
+                  [classes.button] : true,
+                  [classes.subMenu] : level
+                })}
+                component={CustomRouterLink}
+                to={url}
+              >
+                {name}
               </Button>
             </ListItem>
           </List>
         )
       }
       return (
-        <div>
-          <ListItem>
-            <Button>
-
+        <div key={name}>
+          <ListItem
+            className={classes.item}
+            disableGutters
+            key={name}
+            onClick={() => handleClick(name)}
+          >
+            <Button
+               className={clsx({
+                [classes.btnRout] : true,
+                [classes.button] : true,
+                [classes.subMenu] : level
+              })}
+            >
+              {name} {menu[name] ? <ExpandLess /> : <ExpandMore />}
             </Button>
           </ListItem>
-          <Collapse>
+          <Collapse
+            in={(menu[name]) ? true : false}
+            timeout="auto"
+            unmountOnExit
+          >
+            {handleMenu(children, 1)}
           </Collapse>
         </div>
       )
@@ -59,12 +99,54 @@ const MenuBar = (props) => {
   }
 
   return(
-    <Drawer>
-      <List>
-
-      </List>
-    </Drawer>
+    <Router>
+      <div className={clsx(classes.root1)}>
+        <CssBaseline />
+        <Drawer
+          variant="permanent"
+          classes={{paper: classes.drawer}}
+        >
+          <List {...rest} className={clsx(classes.root, className)}>
+            {handleMenu(menuItems.data)}
+          </List>
+        </Drawer>
+        <main className={classes.main}>
+          <Container maxWidth="lg" className={classes.container}>
+            <Switch>
+            <Route path="/" component={Home} />
+            <Route path="/about" component={About} />
+          </Switch>
+          {/* <App /> */}
+          </Container>
+        </main>
+      </div>
+    </Router>
   )
 }
 
 export default MenuBar;
+
+/*
+   <div > 
+    <CssBaseline />
+      <Drawer
+        anchor="left"
+        className={{paper: classes.drawer}}
+        open={true}
+        variant="permanent"
+      >
+        <List {...rest} className={clsx(classes.root, className)}>
+          {handleMenu(menuItems.data)}
+        </List>
+      </Drawer>
+      <main className={classes.main}>
+        <Container maxWidth="lg" className={classes.container}>
+          <Switch>
+          <Route path="/" component={Home} />
+          <Route path="/about" component={About} />
+        </Switch>
+        </Container>
+      </main>
+    </div>
+
+*/
