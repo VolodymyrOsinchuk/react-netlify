@@ -1,12 +1,10 @@
 import { Typography } from "@material-ui/core";
 import React from "react";
 
-const About = () => {
+export const Test3 = () => {
   return (
     <div>
-      <Typography style={{ color: "black" }}>About</Typography>
+      <Typography style={{ color: "black" }}>Test3</Typography>
     </div>
   );
 };
-
-export default About;

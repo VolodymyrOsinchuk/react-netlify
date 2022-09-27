@@ -1,22 +1,22 @@
 // import {makeStyles} from "@material-ui/styles";
-import { makeStyles } from '@material-ui/core/styles';
-import {colors} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { colors } from "@material-ui/core";
 
-const useSyles = makeStyles(theme => ({
+const useSyles = makeStyles((theme) => ({
   root: {
     justifyContent: "left",
   },
   root1: {
-    display: "flex"
+    display: "flex",
   },
   drawer: {
     position: "relative",
     whiteSpace: "nowrap",
     width: 240,
-    background: "#535454",
+    background: "rgb(234, 236, 238)",
     color: "#fff",
     paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4)
+    paddingBottom: theme.spacing(4),
   },
   item: {
     display: "flex",
@@ -24,32 +24,32 @@ const useSyles = makeStyles(theme => ({
     paddingBottom: 0,
     width: 140,
   },
-  button : {
+  button: {
     color: colors.blueGrey[800],
     padding: "10px 8 px",
     justifyContent: "flex-start",
     textTransform: "none",
     letterSpacing: 0,
-    width: "100%"
+    width: "100%",
   },
-  btnRoot : {
+  btnRoot: {
     paddingLeft: "25px",
     justifyContent: "left !important",
   },
-  subMenu : {
-    paddingLeft: "50px !important"
+  subMenu: {
+    paddingLeft: "50px !important",
   },
-  main : {
+  main: {
     flexGrow: 1,
     height: "100vh",
-    overflow: 'auto',
-    backgroundColor:"green",
-    color: "white"
+    overflow: "auto",
+    backgroundColor: "cee2f3",
+    color: "white",
   },
-  container : {
+  container: {
     paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4)
-  }
+    paddingBottom: theme.spacing(4),
+  },
 }));
 
 export default useSyles;
