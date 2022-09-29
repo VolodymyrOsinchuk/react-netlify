@@ -21,7 +21,6 @@ import UseStyles from "./menuBarStyles";
 import Home from "../pages/Home";
 import About from "../pages/About";
 import { Test3 } from "../pages/Test3";
-// import App from "../App";
 
 const MenuBar = (props) => {
   const [menu, setMenu] = useState({});
@@ -117,28 +116,3 @@ const MenuBar = (props) => {
 };
 
 export default MenuBar;
-
-/*
-   <div > 
-    <CssBaseline />
-      <Drawer
-        anchor="left"
-        className={{paper: classes.drawer}}
-        open={true}
-        variant="permanent"
-      >
-        <List {...rest} className={clsx(classes.root, className)}>
-          {handleMenu(menuItems.data)}
-        </List>
-      </Drawer>
-      <main className={classes.main}>
-        <Container maxWidth="lg" className={classes.container}>
-          <Switch>
-          <Route path="/" component={Home} />
-          <Route path="/about" component={About} />
-        </Switch>
-        </Container>
-      </main>
-    </div>
-
-*/
