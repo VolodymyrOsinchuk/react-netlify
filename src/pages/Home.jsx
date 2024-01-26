@@ -1,6 +1,6 @@
-import { Typography } from "@material-ui/core";
 import React from "react";
-import coffe from "../assets/images/cofee.jpg";
+import { Typography } from "@mui/material";
+import coffee from "../assets/images/coffee.jpg";
 
 export default function Home() {
   return (
@@ -13,7 +13,7 @@ export default function Home() {
         Home
       </Typography>
       <img
-        src={coffe}
+        src={coffee}
         alt="coffe "
         height="400px"
         style={{ display: "block", marginLeft: "auto", marginRight: "auto" }}

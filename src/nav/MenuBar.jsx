@@ -1,5 +1,11 @@
 import React, { useState, forwardRef } from "react";
 import {
+  NavLink as RouterLink,
+  Switch,
+  Route,
+  BrowserRouter as Router,
+} from "react-router-dom";
+import {
   Button,
   Drawer,
   Collapse,
@@ -7,20 +13,16 @@ import {
   ListItem,
   Container,
   CssBaseline,
-} from "@material-ui/core";
-import { ExpandLess, ExpandMore } from "@material-ui/icons";
-import {
-  NavLink as RouterLink,
-  Switch,
-  Route,
-  BrowserRouter as Router,
-} from "react-router-dom";
+} from "@mui/material";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import clsx from "clsx";
-import menuItems from "./sideBarItems";
-import UseStyles from "./menuBarStyles";
+// import pages
 import Home from "../pages/Home";
 import About from "../pages/About";
 import { Test3 } from "../pages/Test3";
+// import components
+import menuItems from "./sideBarItems";
+import UseStyles from "./menuBarStyles";
 
 const MenuBar = (props) => {
   const [menu, setMenu] = useState({});
