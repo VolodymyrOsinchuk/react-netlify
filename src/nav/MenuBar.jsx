@@ -12,22 +12,22 @@ import {
   List,
   ListItem,
   Container,
-  CssBaseline,
+  Box,
 } from "@mui/material";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import clsx from "clsx";
 // import pages
 import Home from "../pages/Home";
 import About from "../pages/About";
-import { Test3 } from "../pages/Test3";
+import Calendar from "../pages/Calendar";
 // import components
 import menuItems from "./sideBarItems";
-import UseStyles from "./menuBarStyles";
+import useStyles from "./menuBarStyles";
 
 const MenuBar = (props) => {
   const [menu, setMenu] = useState({});
   const { className, ...rest } = props;
-  const classes = UseStyles();
+  const classes = useStyles();
 
   const handleClick = (item) => {
     // console.log('item' , item)
@@ -47,9 +47,13 @@ const MenuBar = (props) => {
         return (
           <List component="div" disablePadding key={name}>
             <ListItem
-              className={classes.item}
+              sx={{
+                display: "flex",
+                pt: 0,
+                pb: 0,
+                width: "140px",
+              }}
               disableGutters
-              style={{ padding: "0px" }}
               key={name}
             >
               <Button
@@ -70,7 +74,11 @@ const MenuBar = (props) => {
       return (
         <div key={name}>
           <ListItem
-            className={classes.item}
+            sx={{
+              display: "flex",
+              py: 0,
+              width: "140px",
+            }}
             disableGutters
             key={name}
             onClick={() => handleClick(name)}
@@ -95,24 +103,49 @@ const MenuBar = (props) => {
 
   return (
     <Router>
-      <div className={clsx(classes.root1)}>
-        <CssBaseline />
-        <Drawer variant="permanent" classes={{ paper: classes.drawer }}>
+      <Box component="div" sx={{ justifyContent: "left" }}>
+        <Drawer
+          sx={{
+            width: 240,
+            flexShrink: 0,
+            "& .MuiDrawer-paper": {
+              width: 240,
+              boxSizing: "border-box",
+            },
+          }}
+          variant="permanent"
+          anchor="left"
+        >
           <List {...rest} className={clsx(classes.root, className)}>
             {handleMenu(menuItems.data)}
           </List>
         </Drawer>
-        <main className={classes.main}>
-          <Container maxWidth="lg" className={classes.container}>
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            height: "100vh",
+            overflow: "auto",
+            backgroundColor: "cee2f3",
+            color: "white",
+          }}
+        >
+          <Container
+            maxWidth="lg"
+            sx={{
+              flexGrow: 1,
+              bgcolor: "background.default",
+              p: 3,
+            }}
+          >
             <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/about" component={About} />
-              <Route path="/test3" component={Test3} />
+              <Route path="/calendar" component={Calendar} />
             </Switch>
-            {/* <App /> */}
           </Container>
-        </main>
-      </div>
+        </Box>
+      </Box>
     </Router>
   );
 };

@@ -1,13 +1,10 @@
 // import {makeStyles} from "@material-ui/styles";
 import { makeStyles } from "@mui/styles";
-import { createTheme } from "@mui/material/styles";
+import { blueGrey } from "@mui/material/colors";
 
 // import { colors } from "@material-ui/core";
 
-const theme = createTheme();
-console.log("🚀 ~ theme :", theme.palette.grey);
-
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     justifyContent: "left",
   },
@@ -30,7 +27,7 @@ const useStyles = makeStyles(() => ({
     width: 140,
   },
   button: {
-    color: theme.palette.grey[800],
+    color: blueGrey.A700,
     padding: "10px 8 px",
     justifyContent: "flex-start",
     textTransform: "none",

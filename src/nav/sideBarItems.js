@@ -8,11 +8,11 @@ exports.data = [
     url: "/about",
   },
   {
-    name: "Lesson3",
+    name: "Dashboard",
     children: [
       {
-        name: "Lesson3_1",
-        url: "/test3",
+        name: "Calendar",
+        url: "/calendar",
       },
       {
         name: "Lesson3_2",
