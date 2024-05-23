@@ -7,46 +7,48 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  TextField,
+  IconButton,
+  Typography,
 } from "@mui/material";
 import { Calendar, momentLocalizer } from "react-big-calendar";
-import moment from "moment";
+import * as moment from "moment";
+import "moment/locale/uk";
 import TimeComponent from "../components/TimeComponent";
+import CloseIcon from "@mui/icons-material/Close";
 
-moment.locale("fr-FR");
 const localizer = momentLocalizer(moment);
+
+const culture = ["uk-UA"];
 
 const CalendarPage = () => {
   const [events, setEvents] = useState([]);
-  console.log("🚀 ~ CalendarPage ~ events:", events);
   const [eventTitle, setEventTitle] = useState("");
+  const [startTimeValue, setStartTimeValue] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
-  console.log("🚀 ~ CalendarPage ~ selectedDate:", selectedDate);
   const [selectEvent, setSelectEvent] = useState(null);
   console.log("🚀 ~ CalendarPage ~ selectEvent:", selectEvent);
 
   const handleSelectSlot = (slotInfo) => {
+    console.log("🚀 ~ handleSelectSlot ~ slotInfo:", slotInfo);
     setShowModal(true);
     setSelectedDate(slotInfo.start);
     setSelectEvent(null);
   };
-
-  // const handleClickOpen = () => {
-  //   setShowModal(true);
-  // };
 
   const handleSelectedEvent = (event) => {
     console.log("🚀 ~ handleSelectedEvent ~ event:", event);
     setShowModal(true);
     setSelectEvent(event);
     setEventTitle(event.title);
+    setStartTimeValue(event.start);
   };
 
   const handleClose = () => {
     setShowModal(false);
     setEventTitle("");
     setSelectEvent(null);
+    setStartTimeValue(null);
   };
 
   const deleteEvent = () => {
@@ -56,6 +58,7 @@ const CalendarPage = () => {
       setEvents([...updatedEvents]);
     }
     setEventTitle("");
+    setStartTimeValue(null);
     setShowModal(false);
   };
 
@@ -63,6 +66,7 @@ const CalendarPage = () => {
     <Box sx={{ height: "500px", ml: "200px" }}>
       <Calendar
         localizer={localizer}
+        culture={culture}
         startAccessor="start"
         endAccessor="end"
         defaultDate={new Date()}
@@ -71,7 +75,18 @@ const CalendarPage = () => {
         selectable={true}
         onSelectSlot={handleSelectSlot}
         onSelectEvent={handleSelectedEvent}
-        // style={{ height: "100vh" }}
+        showMultiDayTimes
+        dayLayoutAlgorithm="overlap"
+        // style={{ margin: "50px" }}
+        messages={{
+          next: "Наступний",
+          previous: "Попередній",
+          today: "Сьогодні",
+          month: "Місяць",
+          week: "Тиждень",
+          day: "День",
+          agenda: "Календар",
+        }}
       />
       {showModal && (
         <Dialog
@@ -90,6 +105,7 @@ const CalendarPage = () => {
                 const updateEvent = {
                   ...selectEvent,
                   title: eventTitle,
+                  start: startTimeValue,
                 };
                 const updatedEvents = events.map((event) => {
                   console.log("🚀 ~ CalendarPage ~ event:", event);
@@ -99,8 +115,7 @@ const CalendarPage = () => {
                 setEvents(updatedEvents);
               } else {
                 const newEvent = {
-                  title: eventTitle,
-                  start: selectedDate,
+                  start: startTimeValue,
                   end: moment(selectedDate).add(1, "hours").toDate(),
                 };
                 setEvents([...events, newEvent]);
@@ -112,17 +127,28 @@ const CalendarPage = () => {
             },
           }}
         >
-          <DialogTitle textAlign="center">
-            {selectEvent
-              ? "Modifier une disponibilité"
-              : "Ajouter une disponibilité"}
+          <DialogTitle textAlign="left">
+            {selectEvent ? "Змінити доступність" : "Додати доступність"}
           </DialogTitle>
+          <IconButton
+            aria-label="close"
+            onClick={handleClose}
+            sx={{
+              position: "absolute",
+              right: 8,
+              top: 10,
+              color: (theme) => theme.palette.error.dark,
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
           <DialogContent>
             <DialogContentText>
-              To subscribe to this website, please enter your email address
-              here. We will send updates occasionally.
+              <Typography variant="p" textTransform="uppercase">
+                {moment(selectedDate).format("dddd Do MMMM YYYY")}
+              </Typography>
             </DialogContentText>
-            <TextField
+            {/* <TextField
               autoFocus
               required
               margin="dense"
@@ -134,23 +160,30 @@ const CalendarPage = () => {
               variant="standard"
               value={eventTitle}
               onChange={(e) => setEventTitle(e.target.value)}
+            /> */}
+            <TimeComponent
+              title="Початок"
+              timeValue={startTimeValue}
+              onChange={(newValue) => setStartTimeValue(newValue)}
             />
-            <TimeComponent />
+            <TimeComponent title="Кінець" />
           </DialogContent>
           <DialogActions>
             {selectEvent ? (
               <>
                 <Button onClick={deleteEvent} variant="contained" color="error">
-                  Suprimmer
+                  Видалити
                 </Button>
               </>
             ) : (
               <>
-                <Button onClick={handleClose}>Annuler</Button>
+                <Button onClick={handleClose} color="warning">
+                  Скасувати
+                </Button>
               </>
             )}
-            <Button type="submit" variant="contained">
-              Enregistrer
+            <Button type="submit" variant="contained" color="success">
+              Зберегти
             </Button>
           </DialogActions>
         </Dialog>

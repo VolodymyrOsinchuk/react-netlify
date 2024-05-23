@@ -23,6 +23,9 @@ import Calendar from "../pages/Calendar";
 // import components
 import menuItems from "./sideBarItems";
 import useStyles from "./menuBarStyles";
+import BigCalendar from "../pages/BigCalendar";
+import EventCalendar from "../pages/EventCalendar";
+import CreateProduct from "../pages/CreateProduct";
 
 const MenuBar = (props) => {
   const [menu, setMenu] = useState({});
@@ -71,6 +74,7 @@ const MenuBar = (props) => {
           </List>
         );
       }
+
       return (
         <div key={name}>
           <ListItem
@@ -103,7 +107,10 @@ const MenuBar = (props) => {
 
   return (
     <Router>
-      <Box component="div" sx={{ justifyContent: "left" }}>
+      <Box
+        component="div"
+        // sx={{ justifyContent: "left" }}
+      >
         <Drawer
           sx={{
             width: 240,
@@ -111,6 +118,7 @@ const MenuBar = (props) => {
             "& .MuiDrawer-paper": {
               width: 240,
               boxSizing: "border-box",
+              bgcolor: "#E5E8E8",
             },
           }}
           variant="permanent"
@@ -127,7 +135,7 @@ const MenuBar = (props) => {
             height: "100vh",
             overflow: "auto",
             backgroundColor: "cee2f3",
-            color: "white",
+            // color: "white",
           }}
         >
           <Container
@@ -142,6 +150,9 @@ const MenuBar = (props) => {
               <Route path="/" exact component={Home} />
               <Route path="/about" component={About} />
               <Route path="/calendar" component={Calendar} />
+              <Route path="/big-calendar" component={BigCalendar} />
+              <Route path="/event-calendar" component={EventCalendar} />
+              <Route path="/create-product" component={CreateProduct} />
             </Switch>
           </Container>
         </Box>

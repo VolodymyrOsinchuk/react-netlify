@@ -15,12 +15,16 @@ exports.data = [
         url: "/calendar",
       },
       {
-        name: "Lesson3_2",
-        url: "/lesson3_2",
+        name: "Big Calendar",
+        url: "/big-calendar",
       },
       {
-        name: "Lesson3_3",
-        url: "/lesson3_3",
+        name: "Event Calendar",
+        url: "/event-calendar",
+      },
+      {
+        name: "Create Product",
+        url: "/create-product",
       },
     ],
   },
