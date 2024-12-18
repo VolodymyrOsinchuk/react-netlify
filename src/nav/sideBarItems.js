@@ -26,6 +26,10 @@ exports.data = [
         name: "Create Product",
         url: "/create-product",
       },
+      {
+        name: "Countries",
+        url: "/countries",
+      },
     ],
   },
 ];

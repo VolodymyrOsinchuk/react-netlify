@@ -26,6 +26,7 @@ import useStyles from "./menuBarStyles";
 import BigCalendar from "../pages/BigCalendar";
 import EventCalendar from "../pages/EventCalendar";
 import CreateProduct from "../pages/CreateProduct";
+import Countries from "../pages/Countries";
 
 const MenuBar = (props) => {
   const [menu, setMenu] = useState({});
@@ -153,6 +154,7 @@ const MenuBar = (props) => {
               <Route path="/big-calendar" component={BigCalendar} />
               <Route path="/event-calendar" component={EventCalendar} />
               <Route path="/create-product" component={CreateProduct} />
+              <Route path="/countries" component={Countries} />
             </Switch>
           </Container>
         </Box>
