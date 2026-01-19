@@ -46,7 +46,7 @@ const Countries = () => {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedState, setSelectedState] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
   const [phoneCodes, setPhoneCodes] = useState("");
 
   const navigation = useNavigation();
